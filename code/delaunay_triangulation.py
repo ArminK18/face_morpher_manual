@@ -1,6 +1,4 @@
 import cv2
-import numpy as np
-import random
 
 # Check if a point is inside a rectangle
 def rect_contains(rect, point):

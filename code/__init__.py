@@ -2,10 +2,7 @@ from face_landmark_detection import generate_face_correspondences
 from delaunay_triangulation import make_delaunay
 from face_morph import generate_morph_sequence
 
-import subprocess
 import argparse
-import shutil
-import os
 import cv2
 
 def doMorphing(img1, img2, duration, frame_rate, output):

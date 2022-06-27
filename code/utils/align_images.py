@@ -1,10 +1,8 @@
 import os
-import sys
 import bz2
 import argparse
 from face_alignment import image_align
 from landmarks_detector import LandmarksDetector
-import multiprocessing
 
 def unpack_bz2(src_path):
     data = bz2.BZ2File(src_path).read()

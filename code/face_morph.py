@@ -1,8 +1,5 @@
 import numpy as np
 import cv2
-import sys
-import os
-import math
 from subprocess import Popen, PIPE
 from PIL import Image
 

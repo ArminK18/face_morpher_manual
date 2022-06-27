@@ -1,11 +1,6 @@
-import sys
-import os
 import dlib
-import glob
 import numpy as np
-from skimage import io
 import cv2
-from imutils import face_utils
 
 class NoFaceFound(Exception):
    """Raised when there is no face found"""
