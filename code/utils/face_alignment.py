@@ -5,7 +5,7 @@ import PIL.Image
 
 def image_align(src_file, dst_file, face_landmarks, output_size=1024, transform_size=4096, enable_padding=True, x_scale=1, y_scale=1, em_scale=0.1, alpha=False):
         lm = np.array(face_landmarks)
-        lm_chin = lm[0  : 17]
+        lm_chin = lm[0 : 17]
         lm_eyebrow_left = lm[17 : 22]
         lm_eyebrow_right = lm[22 : 27]
         lm_nose = lm[27 : 31]
@@ -15,13 +15,13 @@ def image_align(src_file, dst_file, face_landmarks, output_size=1024, transform_
         lm_mouth_outer = lm[48 : 60]
         lm_mouth_inner = lm[60 : 68]
 
-        eye_left     = np.mean(lm_eye_left, axis=0)
-        eye_right    = np.mean(lm_eye_right, axis=0)
-        eye_avg      = (eye_left + eye_right) * 0.5
-        eye_to_eye   = eye_right - eye_left
-        mouth_left   = lm_mouth_outer[0]
-        mouth_right  = lm_mouth_outer[6]
-        mouth_avg    = (mouth_left + mouth_right) * 0.5
+        eye_left = np.mean(lm_eye_left, axis=0)
+        eye_right = np.mean(lm_eye_right, axis=0)
+        eye_avg = (eye_left + eye_right) * 0.5
+        eye_to_eye = eye_right - eye_left
+        mouth_left = lm_mouth_outer[0]
+        mouth_right = lm_mouth_outer[6]
+        mouth_avg = (mouth_left + mouth_right) * 0.5
         eye_to_mouth = mouth_avg - eye_avg
 
         x = eye_to_eye - np.flipud(eye_to_mouth) * [-1, 1]
