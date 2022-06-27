@@ -1,8 +1,6 @@
 import cv2
 
-# Check if a point is inside a rectangle
 def rect_contains(rect, point):
-
     if point[0] < rect[0]:
         return False
     elif point[1] < rect[1]:
@@ -13,9 +11,7 @@ def rect_contains(rect, point):
         return False
     return True
 
-# Write the delaunay triangles into a file
 def draw_delaunay(f_w, f_h, subdiv, dictionary1):
-
     list4 = []
 
     triangleList = subdiv.getTriangleList()
@@ -33,24 +29,17 @@ def draw_delaunay(f_w, f_h, subdiv, dictionary1):
     return list4
 
 def make_delaunay(f_w, f_h, theList, img1, img2):
-
-    # Make a rectangle.
     rect = (0, 0, f_w, f_h)
 
-    # Create an instance of Subdiv2D.
     subdiv = cv2.Subdiv2D(rect)
 
-    # Make a points list and a searchable dictionary. 
     theList = theList.tolist()
     points = [(int(x[0]),int(x[1])) for x in theList]
     dictionary = {x[0]:x[1] for x in list(zip(points, range(76)))}
     
-    # Insert points into subdiv
     for p in points :
         subdiv.insert(p)
 
-    # Make a delaunay triangulation list.
     list4 = draw_delaunay(f_w, f_h, subdiv, dictionary)
    
-    # Return the list.
     return list4
