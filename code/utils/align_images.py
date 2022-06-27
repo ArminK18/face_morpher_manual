@@ -11,12 +11,7 @@ def unpack_bz2(src_path):
         fp.write(data)
     return dst_path
 
-
 if __name__ == "__main__":
-    """
-    Extracts and aligns all faces from images using DLib and a function from original FFHQ dataset preparation step
-    python align_images.py /raw_images /aligned_images
-    """
     parser = argparse.ArgumentParser(description='Align faces from input images', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('raw_dir', help='Directory with raw images for face alignment')
     parser.add_argument('aligned_dir', help='Directory for storing aligned images')
