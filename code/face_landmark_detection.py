@@ -3,7 +3,6 @@ import numpy as np
 import cv2
 
 class NoFaceFound(Exception):
-   """Raised when there is no face found"""
    pass
 
 def calculate_margin_help(img1,img2):
@@ -65,7 +64,6 @@ def crop_image_help(img1,img2):
         return [img1[:,diff1:avg1],img2[diff0:avg0,:]]
 
 def generate_face_correspondences(theImage1, theImage2):
-    # Detect the points of face.
     detector = dlib.get_frontal_face_detector()
     predictor = dlib.shape_predictor('code/utils/shape_predictor_68_face_landmarks.dat')
     corresp = np.zeros((68,2))
@@ -83,10 +81,6 @@ def generate_face_correspondences(theImage1, theImage2):
         else:
             currList = list2
 
-        # Ask the detector to find the bounding boxes of each face. The 1 in the
-        # second argument indicates that we should upsample the image 1 time. This
-        # will make everything bigger and allow us to detect more faces.
-
         dets = detector(img, 1)
 
         try:
@@ -99,9 +93,7 @@ def generate_face_correspondences(theImage1, theImage2):
 
         for k, rect in enumerate(dets):
             
-            # Get the landmarks/parts for the face in rect.
             shape = predictor(img, rect)
-            # corresp = face_utils.shape_to_np(shape)
             
             for i in range(0,68):
                 x = shape.part(i).x
@@ -111,7 +103,6 @@ def generate_face_correspondences(theImage1, theImage2):
                 corresp[i][1] += y
                 # cv2.circle(img, (x, y), 2, (0, 255, 0), 2)
 
-            # Add back the background
             currList.append((1,1))
             currList.append((size[1]-1,1))
             currList.append(((size[1]-1)//2,1))
@@ -121,7 +112,6 @@ def generate_face_correspondences(theImage1, theImage2):
             currList.append((size[1]-1,size[0]-1))
             currList.append(((size[1]-1),(size[0]-1)//2))
 
-    # Add back the background
     narray = corresp/2
     narray = np.append(narray,[[1,1]],axis=0)
     narray = np.append(narray,[[size[1]-1,1]],axis=0)
