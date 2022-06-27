@@ -6,7 +6,6 @@ import argparse
 import cv2
 
 def doMorphing(img1, img2, duration, frame_rate, output):
-
 	[size, img1, img2, points1, points2, list3] = generate_face_correspondences(img1, img2)
 
 	tri = make_delaunay(size[1], size[0], list3, img1, img2)
@@ -14,7 +13,6 @@ def doMorphing(img1, img2, duration, frame_rate, output):
 	generate_morph_sequence(duration, frame_rate, img1, img2, points1, points2, tri, size, output)
 
 if __name__ == "__main__":
-
 	parser = argparse.ArgumentParser()
 	parser.add_argument("--img1", required=True, help="The First Image")
 	parser.add_argument("--img2", required=True, help="The Second Image")
